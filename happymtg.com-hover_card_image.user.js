@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name           happymtg.com hover_card_image
 // @namespace      happymtg_com_hover_card_image
-// @version        0.2.1
+// @version        0.2.2
 // @include        http://www.happymtg.com/*
 // @require        https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js
 // @require        https://github.com/ichi/greasemonkey_console/raw/master/console.js
@@ -73,6 +73,7 @@ var on_success = function(data, status, xhr){
             , display: 'none'
             , width: 200
             , top: offset.top + height + 5
+            , left: offset.left + width / 2
             , padding: '5px'
             , background: '#ffffee'
             , border: '1px solid #000000'
