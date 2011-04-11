@@ -66,17 +66,20 @@ var on_success = function(data, status, xhr){
         .css({
             position: 'absolute'
             , display: 'none'
+            , width: 200
             , top: offset.top + height + 5
             , left: offset.left + width / 2 + $img[0].width + 10
-            , padding: '3px'
-            , background: '#999900'
-            , border: '1px solid #cccccc'
+            , padding: '5px'
+            , background: '#ffffee'
+            , border: '1px solid #000000'
+            , color: '#000000'
         });
     var $hr = $('<hr />')
         .css({
-            height: 1
-            , margin: '3px 0'
-            , border: '1px solid #000000'
+            height: 0
+            , margin: '5px 0'
+            , border: 'none'
+            , 'border-bottom': '1px solid #000000'
         });
     $text
         .append('<div>' + text_ja + '</div>')
