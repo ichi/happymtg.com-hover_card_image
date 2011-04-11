@@ -10,6 +10,7 @@ firefox/chromeで <https://github.com/ichi/happymtg.com-hover_card_image/raw/mas
 
 ## 動作確認
 Mac OS X 10.6.6
+
 - Firefox 3.6.16
 - Google Chrome 12.0.725.0 dev
 
