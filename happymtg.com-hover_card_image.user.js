@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name           happymtg.com hover_card_image
 // @namespace      happymtg_com_hover_card_image
-// @version        0.2.2
+// @version        0.2.3
 // @include        http://www.happymtg.com/*
 // @require        https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js
 // @require        https://github.com/ichi/greasemonkey_console/raw/master/console.js
@@ -65,8 +65,8 @@ var on_success = function(data, status, xhr){
             , left: offset.left + width / 2
         })
     var $card_detail = $data.find('#carddetail');
-    var text_ja = $card_detail.find('tr.jpnItem:eq(1) > td').text();
-    var text_en = $card_detail.find('tr.engItem:eq(1) > td').text();
+    var text_ja = $card_detail.find('tr.jpnItem:eq(1) > td').text().replace(/\n/g, '<br />');
+    var text_en = $card_detail.find('tr.engItem:eq(1) > td').text().replace(/\n/g, '<br />');
     var $text = $('<div />')
         .css({
             position: 'absolute'
