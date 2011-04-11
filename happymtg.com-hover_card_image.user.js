@@ -1,12 +1,15 @@
 // ==UserScript==
 // @name           happymtg.com hover_card_image
 // @namespace      happymtg_com_hover_card_image
-// @version        0.1.0
+// @version        0.2.0
 // @include        http://www.happymtg.com/*
 // @require        https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js
 // @require        https://github.com/ichi/greasemonkey_console/raw/master/console.js
 // ==/UserScript==
 
+
+var after_loaded_jquery = function($){ // $ = jQuery
+if(!$) return;
 
 var $body = $('body');
 var $card_links = $('span.cardLink > a');
@@ -42,8 +45,10 @@ var hide_card_img = function($link){
     if(!data) return;
     var $img = data.card_img;
     var $text = data.card_text;
-    $img.hide();
-    $text.hide();
+    if($img && $text){
+        $img.hide();
+        $text.hide();
+    }
 };
 
 var on_success = function(data, status, xhr){
@@ -58,7 +63,7 @@ var on_success = function(data, status, xhr){
             , display: 'none'
             , top: offset.top + height + 5
             , left: offset.left + width / 2
-        });
+        })
     var $card_detail = $data.find('#carddetail');
     var text_ja = $card_detail.find('tr.jpnItem:eq(1) > td').text();
     var text_en = $card_detail.find('tr.engItem:eq(1) > td').text();
@@ -68,12 +73,14 @@ var on_success = function(data, status, xhr){
             , display: 'none'
             , width: 200
             , top: offset.top + height + 5
-            , left: offset.left + width / 2 + $img[0].width + 10
             , padding: '5px'
             , background: '#ffffee'
             , border: '1px solid #000000'
             , color: '#000000'
         });
+    $img.load(function(ev){
+        $text.css('left', offset.left + width / 2 + 10 + this.naturalWidth);
+    });
     var $hr = $('<hr />')
         .css({
             height: 0
@@ -119,4 +126,20 @@ $card_links
         set_data($link, {hover: false});
         hide_card_img($link);
     });
+};
 
+
+//main
+var jQuery = jQuery || false;
+if(jQuery){
+    after_loaded_jquery(jQuery);
+}else{
+    var script = document.createElement("script");
+    script.setAttribute("src", "https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js");
+    script.addEventListener('load', function() {
+        var script = document.createElement("script");
+        script.textContent = "(" + after_loaded_jquery.toString() + ")(jQuery);";
+        document.body.appendChild(script);
+    }, false);
+    document.body.appendChild(script);
+}
