@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name           happymtg.com hover_card_image
 // @namespace      happymtg_com_hover_card_image
-// @version        0.2.0
+// @version        0.2.1
 // @include        http://www.happymtg.com/*
 // @require        https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js
 // @require        https://github.com/ichi/greasemonkey_console/raw/master/console.js
@@ -130,10 +130,9 @@ $card_links
 
 
 //main
-var jQuery = jQuery || false;
-if(jQuery){
+try{
     after_loaded_jquery(jQuery);
-}else{
+}catch(e){
     var script = document.createElement("script");
     script.setAttribute("src", "https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js");
     script.addEventListener('load', function() {
