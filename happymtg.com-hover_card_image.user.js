@@ -166,7 +166,7 @@ try{
     after_loaded_jquery(jQuery);
 }catch(e){
     var script = document.createElement("script");
-    script.setAttribute("src", "https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js");
+    script.setAttribute("src", "https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js");
     script.addEventListener('load', function() {
         var script = document.createElement("script");
         script.textContent = "(" + after_loaded_jquery.toString() + ")(jQuery);";
