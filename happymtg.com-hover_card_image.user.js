@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name           happymtg.com hover_card_image
 // @namespace      happymtg_com_hover_card_image
-// @version        0.3.0
+// @version        0.4.1
 // @include        http://www.happymtg.com/*
-// @require        https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js
+// #@require        https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js
 // @require        https://github.com/ichi/greasemonkey_console/raw/master/console.js
 // @grant          none
 // ==/UserScript==
@@ -163,13 +163,15 @@ var after_loaded_jquery = function($){ // $ = jQuery
 
 //init
 try{
+	var ver = jQuery().jquery;
+	if(parseFloat(ver) < 1.7){ throw "require jQuery version >= 1.7" }
     after_loaded_jquery(jQuery);
 }catch(e){
     var script = document.createElement("script");
     script.setAttribute("src", "https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js");
     script.addEventListener('load', function() {
         var script = document.createElement("script");
-        script.textContent = "(" + after_loaded_jquery.toString() + ")(jQuery);";
+        script.textContent = "(" + after_loaded_jquery.toString() + ")(jQuery.noConflict());";
         document.body.appendChild(script);
     }, false);
     document.body.appendChild(script);
